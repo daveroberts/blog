@@ -1,0 +1,2 @@
+#!/bin/bash
+bundle exec rerun --dir posts,templates,static --background './build'

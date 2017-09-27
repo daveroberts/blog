@@ -1,0 +1,4 @@
+body{ margin: 0 }
+.container{ max-width: 35em; line-height: 1.8em; font-size: 1em; font-family: serif; color: #222; margin-left: 11em; }
+.code{ font-family: monospace; font-size: 1em; line-height: 1em; }
+.sidebar{ height: 100%; position: fixed; z-index: 1; background-color: #2156ae; color: white; font-family: sans; font-size: 1em; width: 10em; }

@@ -1,0 +1,31 @@
+date = 2016-08-01
+draft = true
+tags = []
+title = "Database as a Queue"
+----
+testing reload
+<pre class="code prettyprint lang-ruby linenums">
+class Item
+
+  after_save do
+    worker(self)
+  end
+
+  def something_for_longer_example(arg1, arg2)
+  end
+end
+</pre>
+
+Rails after_save
+Gets slow
+Add column status: [Unprocessed, in-process, processed]
+Process does select from widgets where status=Unprocessed, process, change to processed
+Then that becomes slow, what next
+Multiple workers
+Round robin, each worker selects one unprocessed item
+Work distributor, find everything unprocessed, give to workers when they ask
+Or, have the database do it for you
+select id from widgets where status=Unprocessed
+update widgets, set status="in-process" where id=x and status="Unprocessed"
+Will only succeed on one
+:-)

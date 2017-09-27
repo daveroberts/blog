@@ -1,0 +1,13 @@
+---
+date: "2016-08-01"
+draft: true
+tags: []
+title: "side effects"
+---
+
+
+<pre><code class="javascript">alert("Hello World");</code></pre>
+
+<pre><code class="go">messages := make(chan string)
+go func() { messages <- "ping" }()
+msg := <-messages</code></pre>

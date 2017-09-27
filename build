@@ -1,0 +1,5 @@
+#!/bin/bash
+rm -rf dist/* &&
+cp -r static/* dist/ &&
+mkdir dist/posts &&
+bundle exec ruby build_pages.rb $1
