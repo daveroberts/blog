@@ -69,6 +69,7 @@ module PageBuilder
       post = TomlRB.parse(front_matter, symbolize_keys: true)
       post[:filename] = filename[filename.rindex('/')+1..-1]
       post[:content] = content
+      post[:formatted_date] = post[:date].strftime("%B %e, %Y")
       return post
     end
   end

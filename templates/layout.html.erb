@@ -3,22 +3,23 @@
   <head>
     <meta charset="UTF-8">
     <title><%= @title %></title>
-    <link rel="stylesheet" type="text/css" href="../style.css"></link>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="../style.css" />
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
   </head>
   <body>
-    <ul class="sidebar">
-      <% @all_posts.each do |post| %>
-        <li><a href="/posts/<%= post[:filename] %>"><%= post[:title] %></a></li>
-      <% end %>
-    </ul>
-    <div class="navbar">
-      <a href="#">Navbar A</a>
-      <a href="#">Navbar B</a>
-      <div class="clear"></div>
-    </div>
     <div class="container">
       <%= @child %>
+    </div>
+    <div class="sidebar">
+      <h2>About</h2>
+      <div>This is test about stuff</div>
+      <h2>Posts</h2>
+      <ul>
+        <% @all_posts.sort{|a,b|a[:date]<=>b[:date]}.reverse.each do |post| %>
+          <li><a href="/posts/<%= post[:filename] %>"><%= post[:title] %></a></li>
+        <% end %>
+      </ul>
     </div>
   </body>
 </html>
