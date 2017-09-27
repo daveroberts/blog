@@ -2,4 +2,5 @@
 rm -rf dist/* &&
 cp -r static/* dist/ &&
 mkdir dist/posts &&
+mkdir dist/tags &&
 bundle exec ruby build_pages.rb $1

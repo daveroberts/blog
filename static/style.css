@@ -1,4 +1,12 @@
 body{ margin: 0 }
-.container{ max-width: 35em; line-height: 1.8em; font-size: 1em; font-family: serif; color: #222; margin-left: 11em; }
-.code{ font-family: monospace; font-size: 1em; line-height: 1em; }
-.sidebar{ height: 100%; position: fixed; z-index: 1; background-color: #2156ae; color: white; font-family: sans; font-size: 1em; width: 10em; }
+.container{ width: 35em; line-height: 1.8em; font-size: 1em; font-family: serif; color: #222; margin-left: 23em; }
+.code{ font-family: monospace; font-size: 1em; line-height: 1.1em; -moz-tab-size: 2; tab-size: 2; }
+.sidebar{ height: 100%; position: fixed; z-index: 1; background-color: #2156ae; color: white; font-family: sans; font-size: 1em; width: 20em; list-style-type: none; margin: 0; padding: 1em; }
+.sidebar a{ color: white; text-decoration: none; }
+.navbar{ margin-left: 20em; }
+.navbar a { float: left; line-height: 2em; width: 10em; font-family: sans; font-size: 1.3em; text-decoration: none; text-align: center; color: #2156ae; transition: background-color 0.2s ease; }
+.navbar a:hover{ background-color: #2156ae; color: white; }
+.clear{ clear: both; }
+.tags{ font-style: italic; margin: 1em 0; }
+.tags a{ color: #444; text-decoration: none; }
+.tags a:hover{ text-decoration: underline; }

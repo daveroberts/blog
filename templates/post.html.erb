@@ -1,23 +1,11 @@
-<!DOCTYPE html>
-<html lang="en-US">
-  <head>
-    <meta charset="UTF-8">
-    <title><%= title %></title>
-    <link rel="stylesheet" type="text/css" href="../style.css"></link>
-    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-  </head>
-  <body>
-    <div>Navbar</div>
-    <div class="sidebar">
-      <ul>
-        <li>item A</li>
-        <li>item 2</li>
-        <li>item 3</li>
-      </ul>
-    </div>
-    <div class="container">
-      <h1><%= title %></h1>
-      <%= content %>
-    </div>
-  </body>
-</html>
+<h1><%= @post[:title] %></h1>
+<% if @post[:tags].count > 0 %>
+  <div class="tags">
+    Tagged: 
+    <% @post[:tags].each do |tag| %>
+      <a href="/tags/<%= tag %>.html"><%= tag %></a> 
+    <% end %>
+  </div>
+  <div class="clear"></div>
+<% end %>
+<%= @content %>

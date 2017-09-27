@@ -1,0 +1,7 @@
+<h2>List of posts</h2>
+
+<ul>
+  <% @posts.each do |post| %>
+    <li><a href="/posts/<%= post[:filename] %>"><%= post[:title] %></a></li>
+  <% end %>
+</ul>

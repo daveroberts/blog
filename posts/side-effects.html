@@ -1,13 +1,97 @@
----
-date: "2016-08-01"
-draft: true
-tags: []
-title: "side effects"
----
+date = 2016-08-01
+draft = true
+tags = []
+title = "Side Effects in code"
+----
 
+<pre class="code prettyprint lang-c linenums">
+char* production_function(char *param1, char *param2){
+  setStatus("running");
+  char *step1result = step1(param1, param2);
+  log("INFO", "About to do Step 2, this could take awhile");
+  char *step2result = step2(step1result);
+  log("INFO", "Completed step 2");
+  char *step3result = step3(step2result);
+  notify("randomobjectnotify");
+  if (eStop()){
+    setStatus("stopped");
+    return "stoppedresult";
+  }
+  char *step4result = step4(step3result);
+  setStatus("completed");
+  saveFile("Logic completed for params");
+  return step4result;
+}
+</pre>
 
-<pre><code class="javascript">alert("Hello World");</code></pre>
+<pre class="code prettyprint lang-c linenums">
+char* pure(char *param1, char *param2){
+  char *step1result = step1(param1, param2);
+  char *step2result = step2(step1result);
+  char *step3result = step3(step2result);
+  if (eStop()){
+    return "stoppedresult";
+  }
+  char *step4result = step4(step3result);
+  return step4result;
+}
+</pre>
 
-<pre><code class="go">messages := make(chan string)
-go func() { messages <- "ping" }()
-msg := <-messages</code></pre>
+<pre class="code prettyprint lang-c linenums" style="width: 85em">
+package main
+
+import "fmt"
+
+type Log func(level string, msg string)
+type SetStatus func(status string)
+type Notify func(obj string)
+type EStop func() bool
+type SaveFile func(msg string)
+
+func main() {
+	fmt.Println("Calling logic as a pure function")
+	var result = logic("param1", "param2", nil, nil, nil, nil, nil)
+	fmt.Println("Result is " + result)
+
+	fmt.Println("Calling logic as a regular function")
+	result = logic("param1", "param2",
+		func(level string, msg string) { fmt.Println("LOG[" + level + "][" + msg + "]") },
+		func(status string) { fmt.Println("Current status set to: " + status) },
+		func(obj string) { fmt.Println("Called notify message on object: " + obj) },
+		func() bool { var dbLookupResult = false; return dbLookupResult },
+		func(info string) { fmt.Println("Info written to file [[" + info + "]]") })
+	fmt.Println("Result is " + result)
+}
+
+func logic(param1 string, param2 string, log Log, setStatus SetStatus, notify Notify, eStop EStop, saveFile SaveFile) string {
+	if setStatus != nil {
+		setStatus("running")
+	}
+	var s1 = param1 + "::" + param2
+	if log != nil {
+		log("INFO", "About to do Step 2, this could take awhile")
+	}
+	var s2 = s1 + "::step2"
+	if log != nil {
+		log("INFO", "Completed step 2")
+	}
+	var s3 = s2 + "::step3"
+	if notify != nil {
+		notify("randomobjectnotify")
+	}
+	if eStop != nil && eStop() {
+		if setStatus != nil {
+			setStatus("stopped")
+		}
+		return "stoppedresult"
+	}
+	var s4 = s3 + "::step4"
+	if setStatus != nil {
+		setStatus("completed")
+	}
+	if saveFile != nil {
+		saveFile("Logic completed for params " + param1 + "::" + param2)
+	}
+	return s4
+}
+</pre>
