@@ -9,4 +9,12 @@
   <div class="clear"></div>
 <% end %>
 <div class="date"><%= @post[:formatted_date] %></div>
-<div class="post-content"><%= @content %></div>
+<div class="post-content">
+  <%= @post[:content] %>
+  <% idx = @all_posts.index(@post) %>
+  <% if idx %>
+    <% next_idx = (idx+1) % @all_posts.length %>
+    <% next_post = @all_posts[next_idx] %>
+    <div class="read_next">Read next: <a href="/posts/<%= next_post[:filename] %>"><%= next_post[:title] %></a></div>
+  <% end %>
+</div>

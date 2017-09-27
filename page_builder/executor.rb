@@ -45,9 +45,9 @@ module PageBuilder
           tags[tag].push post
         end
       end
+      posts = posts.sort{|a,b|a[:date]<=>b[:date]}.reverse
       posts.each do |post|
         html = Page.new.render('post', {
-          content: post[:content],
           title: post[:title],
           post: post,
           all_posts: posts }, 'layout')
@@ -61,6 +61,10 @@ module PageBuilder
           tag: tag, }, 'layout')
         File.write("dist/tags/#{tag}.html", html)
       end
+      html = Page.new.render('index', {
+          all_posts: posts,
+          title: "Blog" }, 'layout')
+      File.write("dist/index.html", html)
     end
 
     def process(filename, content)
@@ -70,6 +74,7 @@ module PageBuilder
       post[:filename] = filename[filename.rindex('/')+1..-1]
       post[:content] = content
       post[:formatted_date] = post[:date].strftime("%B %e, %Y")
+      post[:formatted_short_date] = post[:date].strftime("%Y-%m-%d")
       return post
     end
   end
