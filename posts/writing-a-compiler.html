@@ -1,0 +1,17 @@
+date = 2017-09-27
+draft = true
+tags = []
+title = "Writing a compiler"
+----
+<h2>Motivation</h2>
+<p>Why should you learn to write a compiler?</p>
+<p>You probably don't need to.  Move along, nothing to learn here.</p>
+<p>Programming lectures, books, talks, videos, tutorials and courses.  Some people find these to be very helpful.  I don't.  I can pass an entire programming course on Coursera or Udacity without retaining much of anything which I learned.</p>
+<p><strong>In order for me to learn, I need to have a real, practical problem that I'm solving.</strong></p>
+<p>I suspect that many programmers are the same way.  If I'm listening to a lecture about some new cool technology, I constantly ask myself <i>"how can I use this to solve a problem I have?"</i>.  If it can't solve one of my problems, I can't be bothered.  I'll zone out.  My brain won't bother to commit any of it to memory.</p>
+<h2>Academic Compiler</h2>
+<p>Because I never <i>needed</i> to learn about compilers, I never <i>wanted</i> to learn about compilers.  I took a compilers course in school.  I had a great professor too.  I needed to learn enough to do well in the class, we built a toy compiler, but I didn't really learn how to build a compiler.</p>
+<p>The compiler we built could do basic math and store variables.  We built the compiler using Java.  Java could already add numbers and store variables, among many other things our compilers couldn't do.  Why would we ever choose to write our own compiler?  I figured that this was just something that all Computer Science majors needed to learn in school.  Consider it a theory course, and move on.</p>
+<h2>Windows Power Calculator</h2>
+<p>The calculator included with Windows XP was pretty basic.  Microsoft offered a better version called Power Calculator along with a suite of tools called Microsoft PowerToys for Windows XP.  Power Calculator didn't work on Windows Vista or Windows 7.  <i>(It sort of worked, but would refuse to run the installer, so you'd have to get the executable elsewhere.  The executable needed to be run in compatibility mode.  I think this broke with some Windows update)</i>.  With my favorite calculator gone, I needed something to fill the void.  I tried various third party calculators.  Most suffered from one or more of the following problems:  First, most took about two or three seconds to load.  That may not sound so bad, but I was used to an instant load time!  Second, they were way too complex.  I just wanted a simple interface, not 50 buttons.  Third, I wanted the ability to select parts of the equation with my mouse and delete, edit, change the equation.  You could do this with Power Calculator.</p>
+<p>At some moment, I was motivated enough and bored enough to just write my own calculator.  How hard could it be?  I opened up Visual Studio and got to work.  At some point I needed to parse the input.  If the user entered <span class="code">1+2*3</span>, I wanted to multiply two and three first, then add one, according to the order of operations.</p>
