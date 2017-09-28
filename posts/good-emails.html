@@ -1,16 +1,53 @@
 date = 2017-06-12
 draft = true
-tags = ["test", "email", "stuff"]
-title = "Tips for Writing Emails"
+tags = ["soft skills"]
+title = "Writing Emails"
 ----
-<p>Being able to communicate well is second only to your ability to write good code as a developer.  Here are some of my email tips:</p>
-<p><strong>1. Don't document negativity</strong></p>
-<p>Emails are forever.  Once you hit send, it's "in the books".  Don't let anger, which is usually a temporary emotion, leak into your emails.</p>
-<p><strong>2. Don't be passive aggressive</strong></p>
-<p>You may want to side-step point #1 by writing polite emails which are insults in disguise.  For example, <i>"Thank you for finally resolving this"</i>, or <i>"I think you've helped all that you can!"</i>.  Don't do this.</p>
-<p><strong>3. Be brief</strong></p>
-<p>People don't read emails like a book, from cover to cover.  People skim emails looking for a reason to hit `delete` (or archive).  If you have something important to say in an email, don't bury it in a novel.</p>
+<p>Being able to communicate well is second only to your ability to write good code as a developer.  It takes a lot of work to get right, and getting it right is really important.  Here are my tips.</p>
+<p><strong>1. Be nice</strong></p>
+<p>Sounds easy, right?  It is, but I'm amazed at how often people are angry in their emails.  A good friend once told me <strong><i>"Don't document negativity"</i></strong>.</p>
+<p>Emails are forever.  Don't let anger, which is usually a temporary emotion, leak into your emails.  If you need to, go take a walk and cool down before you hit send.</p>
+<p>You may want to side-step this rule by writing polite emails which are insults in disguise.  For example, <i>"Thank you for finally resolving this"</i>, or <i>"I think you've helped all that you can!"</i>.  <strong>Don't do this.</strong></p>
+<p><strong>2. Be brief</strong></p>
+<p>People skim their emails, so be terse.  If a long explanation is warranted, consider putting a one line summary at the top.</p>
 <p>Write an email draft and then refine and trim it until the email contains just the bare essentials.</p>
-<p><strong>4. If you expect people to take action, make it very clear</strong></p>
-<p>When possible, put requests in the first line.  Here's a good example of a concise email <i>"We have developed feature-x and it is ready for testing.  Feature-x allows our software to import Word files.  Jim, can you check out brach-feature-x and test it?  Let us know if it contains bugs or if it is working as expected."</i></p>
-<p>As a corollary, if you don't expect anybody to take action, reconsider whether or not you need to send an email.  Sometimes it's necessary to send "No action" emails.  If this is the case and you don't require any action, you can specify, <i>"I have completed step 8 of feature-x.  I expect feature-x will be developed by the end of this week.  At that time I will follow up with an email."</i></p>
+<p><strong>3. If you expect action, make it painfully clear</strong></p>
+<p>Here's a good example of a concise email:</p>
+<p><i>
+  From: Me<br />
+Subject: Feature-x ready for testing<br />
+Dear team,<br />
+We have developed feature-x and it is ready for testing.  Feature-x allows our software to import Word files.  Jim, can you check out brach-feature-x and test it?  Let us know if it contains bugs or if it is working as expected.
+</i></p>
+<p>Bonus points if you put the request in the first line.  More bonus points if the email is one line.</p>
+<p>As a corollary to this rule, if you don't expect anybody to take action, reconsider whether an email is needed at all.</p>
+<p>However, email can be useful as a paper trail.  If somebody says, "You never told me!", email proves them wrong instantly.</p>
+<p><strong>4. Read through your emails before you send them</strong></p>
+<p>You'll be amazed at how many mistakes you'll find.  I generally keep re-reading an email until I get through it without making any changes</p>
+<p><strong>5. Replies should empower the sender</strong></p>
+<p>When you receive an email, it's usually because the sender is trying to accomplish some task, and needs your help.  Here's an example email.</p>
+<p><i>From: Customer<br />
+Dear development team,<br />
+We're receiving reports that the software is not working this morning.  Please look into this right away.</i></p>
+<p>What the customer is actually saying:</p>
+<p><i>From: Customer<br />
+Dear development team,<br />
+My boss has gotten over 50 emails from pissed off users that our software is broken.  He's breathing down my neck demanding answers.  If this isn't fixed, somebody is going to get fired, and it won't be me.  Help!</i></p>
+<p>Here's a bad way to handle it</p>
+<p><i>From: Developer<br />
+Dear Customer,<br />
+This problem might be occurring because a user sent too much data, or the operations team was performing an upgrade (Monday night is normally when upgrades occur, which we've repeatedly warned was a bad time).  The upload module is very complex.  It's possible that it's actually working fine, and the user doesn't understand how the software should behave.  I've attached a copy of our user manual.  We should probably discuss some of the edge cases for upload which weren't specified before.<br />
+Signed, Not-our-problem</i></p>
+<p>Okay, that's probably over the top, but this is based on a true story.  You haven't empowered the customer to do anything to help fix his/her situation.  Here's a better way to handle that same situation:</p>
+<p><i>From: Developer<br />
+Dear Customer,<br />
+We don't know why this is happening.  We are looking into this and will get back to you this morning.<br />
+Signed, &lt;name&gt;<br />
+Desk: &lt;number&gt;</i></p>
+<p>Saying "I don't know" is a perfectly cromulent response if it's honest.  Be sure to leave an alternate way to contact you if this is the case.  Here's an example of a good follow up:</p>
+<p><i>From: Developer<br />
+Dear Customer,<br />
+We looked into the incident.  At 7:30PM last night, our software was reporting two dots, where normally, there is only one dot.  The root cause of this was a user uploading 400TB of data at 5:02PM that same day.  We understand having two dots is not desirable, as it adversely affects how the app performs.  At 9:25AM today, we logged into the server and manually reduced the number of dots to one.  In the short term, we will periodically log into the server and check how many dots are present.  We can prevent this from happening in the future by either restricting how much data is uploaded, or setting up a second server to handle the load.  We can prepare this software change with the upcomming software release planned on the 31st, or prepare an emergency patch which can be deployed on Thursday at the earliest.<br />
+Signed, &lt;name&gt;</i></p>
+<p>You don't have to apologize, but you can if you feel it's appropriate.  The email is informative, direct and honest.  With this type of response, your customer is now <em>empowered</em> to answer all the questions he/she is receiving.</p>
+<p>You can be the greatest developer, but if you're not effective at communicating, you will likely be viewed as a poor developer.  Take the time to write good emails, and it will pay in dividends.</p>
