@@ -1,5 +1,5 @@
 <ul>
   <% @posts.each do |post| %>
-    <li><a href="/posts/<%= post[:filename] %>"><%= post[:title] %></a></li>
+    <li><span class="date"><%= post[:formatted_short_date] %></span> <a href="/posts/<%= post[:filename] %>"><%= post[:title] %></a></li>
   <% end %>
 </ul>
