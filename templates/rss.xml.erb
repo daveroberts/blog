@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+  <channel>
+    <title>Behind the Curve</title>
+    <link>https://daveroberts.us/</link>
+    <description>Writing about stuff ten years too late</description>
+    <language>en-us</language>
+    <% @all_posts.take(10).each do |post| %>
+      <item>
+        <title><%= post[:title] %></title>
+        <link>https://daveroberts.us/posts/<%= post[:filename] %></link>
+        <description><%= post[:description] %></description>
+        <pubDate><%= post[:pub_date] %></pubDate>
+      </item>
+    <% end %>
+  </channel>
+</rss>

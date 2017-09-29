@@ -7,7 +7,7 @@ module PageBuilder
     def initialize
       @templates = {}
     end
-    
+
     def render(name, locals={}, layout=nil)
       locals.each do |key, value|
         instance_variable_set("@#{key}", value)
@@ -22,8 +22,7 @@ module PageBuilder
 
     def template(name)
       return @templates[name] if @templates.has_key? name
-      #@templates[name] = ERB.new(File.read("./templates/#{name}.html.erb"), nil, nil, name)
-      @templates[name] = ERB.new(File.read("./templates/#{name}.html.erb"))
+      @templates[name] = ERB.new(File.read("./templates/#{name}"))
       return @templates[name]
     end
   end
@@ -47,24 +46,27 @@ module PageBuilder
       end
       posts = posts.sort{|a,b|a[:date]<=>b[:date]}.reverse
       posts.each do |post|
-        html = Page.new.render('post', {
+        html = Page.new.render('post.html.erb', {
           title: post[:title],
           post: post,
-          all_posts: posts }, 'layout')
+          all_posts: posts }, 'layout.html.erb')
         File.write("dist/posts/#{post[:filename]}", html)
       end
       tags.keys.each do |tag|
-        html = Page.new.render('tag', {
+        html = Page.new.render('tag.html.erb', {
           all_posts: posts,
           title: "`#{tag}` posts",
           tagged_posts: tags[tag],
-          tag: tag, }, 'layout')
+          tag: tag, }, 'layout.html.erb')
         File.write("dist/tags/#{tag}.html", html)
       end
-      html = Page.new.render('index', {
+      html = Page.new.render('index.html.erb', {
           all_posts: posts,
-          title: "Blog" }, 'layout')
+          title: "Blog" }, 'layout.html.erb')
       File.write("dist/index.html", html)
+      rss = Page.new.render('rss.xml.erb', {
+          all_posts: posts, })
+      File.write("dist/rss.xml", rss)
     end
 
     def process(filename, content)
@@ -75,6 +77,8 @@ module PageBuilder
       post[:content] = content
       post[:formatted_date] = post[:date].strftime("%B %e, %Y")
       post[:formatted_short_date] = post[:date].strftime("%Y-%m-%d")
+      post[:pub_date] = post[:date].strftime("%a, %d %b %Y %H:%M:%S %Z")
+      #Sun, 19 May 2002 15:21:36 GMT
       return post
     end
   end

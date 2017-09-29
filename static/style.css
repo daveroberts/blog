@@ -1,12 +1,15 @@
+html{ height: 100%; }
 body{ margin: 0; color: #222 }
-.container{ max-width: 50em; line-height: 1.8em; font-size: 1em; font-family: serif; margin-left: 23em; }
+.wrapper{ display: grid; grid-template-columns: 22em auto; grid-gap: 0; }
+.container{ grid-column: 2 / 3; grid-row: 1; max-width: 50em; line-height: 1.8em; font-size: 1em; font-family: serif; padding: 1em; }
 h1,h2,h3{ font-family: sans-serif; color: #333; }
 .code{ font-family: monospace; font-size: 1em; line-height: 1.1em; -moz-tab-size: 2; tab-size: 2; }
-.sidebar{ height: 100%; top: 0; position: fixed; z-index: 1; background-color: #2156ae; color: white; font-family: sans; font-size: 1em; width: 20em; margin: 0; padding: 1em; }
+.sidebar{ grid-column: 1 / 2; grid-row: 1; background-color: #2156ae; color: white; font-family: sans; font-size: 1em; width: 20em; margin: 0; padding: 1em; }
 .sidebar > h1,.sidebar > h2,.sidebar > h3{ color: white; }
 .sidebar ul { list-style-type: none; margin: 0; padding: 0; }
 .sidebar a{ color: white; text-decoration: none; }
 .sidebar span.date{ color: #ccccff; font-family: monospace; }
+.sidebar_picture{ width: 20em; }
 .navbar{ margin-left: 20em; }
 .navbar a { float: left; line-height: 2em; width: 10em; font-family: sans; font-size: 1.3em; text-decoration: none; text-align: center; color: #2156ae; transition: background-color 0.2s ease; }
 .navbar a:hover{ background-color: #2156ae; color: white; }
@@ -21,7 +24,8 @@ a{ text-decoration: none; font-family: sans; }
 a:hover{ text-decoration: underline; }
 
 @media (max-width: 900px) {
-  .sidebar { height: auto; position: static; width: auto; }
-  .container{ margin-left: 1em; }
-  .navbar{ margin-left: 1em; }
+  .wrapper{ grid-template-columns: auto; }
+  .container{ grid-column: 1; grid-row: 1; }
+  .sidebar{ grid-column: 1; grid-row: 2; width: auto; }
+  .sidebar_picture{ width: auto; max-width: 100%; }
 }

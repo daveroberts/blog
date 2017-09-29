@@ -2,15 +2,22 @@ date = 2017-06-12
 draft = true
 tags = ["soft skills"]
 title = "Writing Emails"
+description = "A simple guide to writing better emails"
 ----
 <p>Being able to communicate well is second only to your ability to write good code as a developer.  It takes a lot of work to get right, and getting it right is really important.  Here are my tips.</p>
 <p><strong>1. Be nice</strong></p>
-<p>Sounds easy, right?  It is, but I'm amazed at how often people are angry in their emails.  A good friend once told me <strong><i>"Don't document negativity"</i></strong>.</p>
-<p>Emails are forever.  Don't let anger, which is usually a temporary emotion, leak into your emails.  If you need to, go take a walk and cool down before you hit send.</p>
-<p>You may want to side-step this rule by writing polite emails which are insults in disguise.  For example, <i>"Thank you for finally resolving this"</i>, or <i>"I think you've helped all that you can!"</i>.  <strong>Don't do this.</strong></p>
+<p>Sounds easy, right?  It is, but I'm amazed at how often people send angry emails.</p>
+<p>Emails are forever.  Don't let anger, which is usually a temporary emotion, leak into your emails.  If you need to, go take a walk and cool down before you hit send.  A good friend once told me <strong><i>"Don't document negativity"</i></strong>.</p>
+<p>You may want to side-step this rule by writing polite emails which are insults in disguise.  For example, <i>"Thank you for finally resolving this"</i>, or <i>"I think you've helped all that you can!"</i>.  Don't do this either.</p>
 <p><strong>2. Be brief</strong></p>
 <p>People skim their emails, so be terse.  If a long explanation is warranted, consider putting a one line summary at the top.</p>
 <p>Write an email draft and then refine and trim it until the email contains just the bare essentials.</p>
+<p><em>Managers love graphs.</em>  Some people are visual learners, and pictures just work better for them.</p>
+<p>Let's say that at 9AM you receive an email saying that the server was slow the night before at 8PM.  As a developer, the first thing I'll do is download the log files from the night before.  Log messages are usually pretty uniform, so it's trivial to write some code that reads a log file and spits out a CSV with event type and timestamp.  Throw your CSV into Excel and it'll make you a pretty graph:</p>
+<p style="text-align: center;"><img src="/good-emails/frequency.png" alt="frequency chart" /></p>
+<p>Now I can send an email which says, <i>"We're looking into this issue.  It appears that the numbers spiked at 8:11PM and then declined."</i></p>
+<p>In doing so, you've confirmed the problem, and shown that you have a way to measure the problem.  People will think that you're well on your way to a solution, even if you haven't fired up your IDE yet.</p>
+<p>Making good looking graphs with Excel is so easy, and yet they create a warm fuzzy feeling that the situation is under control (or it will be soon).  It's a false economy not to take advantge of them.</p>
 <p><strong>3. If you expect action, make it painfully clear</strong></p>
 <p>Here's a good example of a concise email:</p>
 <p><i>
@@ -19,21 +26,27 @@ Subject: Feature-x ready for testing<br />
 Dear team,<br />
 We have developed feature-x and it is ready for testing.  Feature-x allows our software to import Word files.  Jim, can you check out brach-feature-x and test it?  Let us know if it contains bugs or if it is working as expected.
 </i></p>
-<p>Bonus points if you put the request in the first line.  More bonus points if the email is one line.</p>
+<p>If the email is addressed to multiple people, be sure to name who you want to take the action.  If you don't know who should do the work you can say, <i>"Test leader Sally, please ask a member of your team to . . ."</i>  If you ask "can somebody test this?", you're less likely to get a result.</p>
+<p>Bonus points if you can put the request in the first line.  More bonus points if the email is one line.</p>
 <p>As a corollary to this rule, if you don't expect anybody to take action, reconsider whether an email is needed at all.</p>
-<p>However, email can be useful as a paper trail.  If somebody says, "You never told me!", email proves them wrong instantly.</p>
+<p>However, "No action" emails can be useful as a paper trail.  If somebody says, "You never told me!", you can simply point to the email you sent earlier.</p>
+<p>Leaving your phone number in your signature is also a good idea.  Some people don't like writing emails.  If someone calls you and prefers to talk, talk with them.  Don't "force" them to write email.  Of course, phone calls don't leave a nice paper trail.  After the call, send an email to everybody on the email chain, including the person that called you.  Here's an example:</p>
+<p><i>
+  From: me<br />
+I wanted to keep you all in the loop on a conversation John and I just had where we discussed &lt;topic&gt;.  Some of the key points are A, B, and C.  I agreed to do X and he agreed to do Y.  I will follow up when X is complete.
+</i></p>
+<p>Sending this email keeps everyone up to date, preserves the paper trail, and perhaps most importantly, let's John confirm that what he meant to say to you on the phone is what you heard.</p>
 <p><strong>4. Read through your emails before you send them</strong></p>
-<p>You'll be amazed at how many mistakes you'll find.  I generally keep re-reading an email until I get through it without making any changes</p>
+<p>I'm amazed at how bad some of my emails are before they're proof read.  I generally keep re-reading an email until I get through it without making any changes.  If the email is going to VIPs or a bunch of people, you can even ask for another person to read it for you first.  This has the added benefit of subtly complimenting the person that you value their opinion and input on important matters.</p>
 <p><strong>5. Replies should empower the sender</strong></p>
-<p>When you receive an email, it's usually because the sender is trying to accomplish some task, and needs your help.  Here's an example email.</p>
+<p>When you receive an email, it's usually because the sender is trying to accomplish some task, and needs your help.  Make sure your reply empowers them to complete their task.  Here's an example email.</p>
 <p><i>From: Customer<br />
 Dear development team,<br />
 We're receiving reports that the software is not working this morning.  Please look into this right away.</i></p>
 <p>What the customer is actually saying:</p>
-<p><i>From: Customer<br />
-Dear development team,<br />
-My boss has gotten over 50 emails from pissed off users that our software is broken.  He's breathing down my neck demanding answers.  If this isn't fixed, somebody is going to get fired, and it won't be me.  Help!</i></p>
-<p>Here's a bad way to handle it</p>
+<p><i>Dear development team,<br />
+My boss has gotten over 50 emails from pissed off users that our software is broken.  He's breathing down my neck demanding answers.  Help!</i></p>
+<p>Here's a bad way to handle the situation</p>
 <p><i>From: Developer<br />
 Dear Customer,<br />
 This problem might be occurring because a user sent too much data, or the operations team was performing an upgrade (Monday night is normally when upgrades occur, which we've repeatedly warned was a bad time).  The upload module is very complex.  It's possible that it's actually working fine, and the user doesn't understand how the software should behave.  I've attached a copy of our user manual.  We should probably discuss some of the edge cases for upload which weren't specified before.<br />
@@ -44,10 +57,10 @@ Dear Customer,<br />
 We don't know why this is happening.  We are looking into this and will get back to you this morning.<br />
 Signed, &lt;name&gt;<br />
 Desk: &lt;number&gt;</i></p>
-<p>Saying "I don't know" is a perfectly cromulent response if it's honest.  Be sure to leave an alternate way to contact you if this is the case.  Here's an example of a good follow up:</p>
+<p>Saying "I don't know" is a perfectly cromulent response.  Here's an example of a good follow up:</p>
 <p><i>From: Developer<br />
 Dear Customer,<br />
-We looked into the incident.  At 7:30PM last night, our software was reporting two dots, where normally, there is only one dot.  The root cause of this was a user uploading 400TB of data at 5:02PM that same day.  We understand having two dots is not desirable, as it adversely affects how the app performs.  At 9:25AM today, we logged into the server and manually reduced the number of dots to one.  In the short term, we will periodically log into the server and check how many dots are present.  We can prevent this from happening in the future by either restricting how much data is uploaded, or setting up a second server to handle the load.  We can prepare this software change with the upcomming software release planned on the 31st, or prepare an emergency patch which can be deployed on Thursday at the earliest.<br />
+We looked into the incident.  At 7:30PM last night, our software was reporting two dots, where normally, there is only one dot.  The root cause of this was a user uploading 400TB of data at 5:02PM that same day.  We understand having two dots is not desirable, as it adversely affects how the app performs.  At 9:25AM today, we logged into the server and manually reduced the number of dots to one.  In the short term, we will periodically log into the server and check how many dots are present.  We can prevent this from happening in the future by either restricting how much data is uploaded, or setting up a second server to handle the load.  We can prepare this software change with the upcomming software release planned on the 31st, or prepare an emergency patch which can be deployed on Thursday at the earliest with one hour of downtime to the application.  Please let us know which option you would prefer, or give us a call if you'd like to discuss further.<br />
 Signed, &lt;name&gt;</i></p>
 <p>You don't have to apologize, but you can if you feel it's appropriate.  The email is informative, direct and honest.  With this type of response, your customer is now <em>empowered</em> to answer all the questions he/she is receiving.</p>
-<p>You can be the greatest developer, but if you're not effective at communicating, you will likely be viewed as a poor developer.  Take the time to write good emails, and it will pay in dividends.</p>
+<p>You can be a great developer, but if you're not effective at communicating, you will likely be viewed as a poor developer.  Take the time to write good emails, and it will pay in dividends.</p>

@@ -3,23 +3,32 @@
   <head>
     <meta charset="UTF-8">
     <title><%= @title %></title>
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Behind the Curve"  href="/rss.xml" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" type="text/css" href="../style.css" />
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
   </head>
   <body>
-    <div class="container">
-      <%= @child %>
-    </div>
-    <div class="sidebar">
-      <h2>About</h2>
-      <div>This is test about stuff</div>
-      <h2>Posts</h2>
-      <ul>
-        <% @all_posts.sort{|a,b|a[:date]<=>b[:date]}.reverse.each do |post| %>
-          <li><span class="date"><%= post[:formatted_short_date] %></span> <a href="/posts/<%= post[:filename] %>"><%= post[:title] %></a></li>
-        <% end %>
-      </ul>
+    <div class="wrapper">
+      <div class="container">
+        <%= @child %>
+      </div>
+      <div class="sidebar">
+        <h2>Behind the Curve</h2>
+        <img class="sidebar_picture" src="/Butters Demanding.jpg" alt="Looking at you" />
+        <div>Writing about stuff ten years too late</div>
+        <div>
+          <a rel="alternate" type="application/rss+xml" href="/rss.xml"><img src="/feed-icon-28x28.png" alt="rss feed icon"/></a>
+          <a href="https://twitter.com/_daveroberts"><img src="/twitter-icon.png" alt="Twitter" /></a>
+          <a href="mailto:dave.a.roberts@gmail.com"><img src="/email-icon.png" alt="Email" /></a>
+        </div>
+        <h2>Posts</h2>
+        <ul>
+          <% @all_posts.sort{|a,b|a[:date]<=>b[:date]}.reverse.each do |post| %>
+            <li><span class="date"><%= post[:formatted_short_date] %></span> <a href="/posts/<%= post[:filename] %>"><%= post[:title] %></a></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </body>
 </html>
