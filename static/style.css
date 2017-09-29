@@ -1,18 +1,15 @@
 html{ height: 100%; }
 body{ margin: 0; color: #222 }
-.wrapper{ display: grid; grid-template-columns: 22em auto; grid-gap: 0; }
-.container{ grid-column: 2 / 3; grid-row: 1; max-width: 50em; line-height: 1.8em; font-size: 1em; font-family: serif; padding: 1em; }
+.wrapper{ display: grid; grid-template-columns: 25em auto; grid-gap: 0; min-height: 100vh; }
+.container{ grid-column: 2 / 3; grid-row: 1; max-width: 45em; line-height: 1.8em; font-size: 1em; font-family: serif; padding: 1em; }
 h1,h2,h3{ font-family: sans-serif; color: #333; }
 .code{ font-family: monospace; font-size: 1em; line-height: 1.1em; -moz-tab-size: 2; tab-size: 2; }
-.sidebar{ grid-column: 1 / 2; grid-row: 1; background-color: #2156ae; color: white; font-family: sans; font-size: 1em; width: 20em; margin: 0; padding: 1em; }
+.sidebar{ grid-column: 1 / 2; grid-row: 1; background-color: #2156ae; color: white; font-family: sans; font-size: 1em; margin: 0; padding: 1em; }
 .sidebar > h1,.sidebar > h2,.sidebar > h3{ color: white; }
 .sidebar ul { list-style-type: none; margin: 0; padding: 0; }
 .sidebar a{ color: white; text-decoration: none; }
 .sidebar span.date{ color: #ccccff; font-family: monospace; }
-.sidebar_picture{ width: 20em; }
-.navbar{ margin-left: 20em; }
-.navbar a { float: left; line-height: 2em; width: 10em; font-family: sans; font-size: 1.3em; text-decoration: none; text-align: center; color: #2156ae; transition: background-color 0.2s ease; }
-.navbar a:hover{ background-color: #2156ae; color: white; }
+.sidebar_picture{ width: 23em; }
 .clear{ clear: both; }
 .tags{ font-style: italic; margin: 0.3em 0; }
 .tags a{ color: #444; text-decoration: none; }
