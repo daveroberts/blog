@@ -35,6 +35,8 @@ module PageBuilder
         post = process(filename, File.read(filename))
         posts.push post
         rescue => e
+          puts "Error found when processing #{filename}"
+          raise e
         end
       end
       tags = {}
