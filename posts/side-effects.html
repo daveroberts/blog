@@ -1,98 +1,67 @@
 date = 2016-08-01
 draft = true
 tags = []
-title = "Side Effects in code"
+title = "Refactoring side effects in code"
 description = "How to test an untestable code base"
 ----
-
-<pre class="code prettyprint lang-c linenums">
-char* production_function(char *param1, char *param2){
-  setStatus("running");
-  char *step1result = step1(param1, param2);
-  log("INFO", "About to do Step 2, this could take awhile");
-  char *step2result = step2(step1result);
-  log("INFO", "Completed step 2");
-  char *step3result = step3(step2result);
-  notify("randomobjectnotify");
+<p>I recently dealt with some code that needed some tests defined.  The problem I ran into was that the code was full of side effects: writing to log files, sending emails, updating web services, etc.  I just wanted to test the core logic, and not all of the external stuff.</p>
+<p>The code looked something like this:</p>
+<pre class="code prettyprint lang-javascript linenums">
+function logic(param1, param2){
+  setStatus("running")
+  var step1result = step1(param1, param2)
+  log("INFO", "About to do Step 2, this could take awhile")
+  var step2result = step2(step1result)
+  log("INFO", "Completed step 2")
+  var step3result = step3(step2result)
+  notify("randomobjectnotify")
   if (eStop()){
-    setStatus("stopped");
-    return "stoppedresult";
+    setStatus("stopped")
+    return "stoppedresult"
   }
-  char *step4result = step4(step3result);
-  setStatus("completed");
-  saveFile("Logic completed for params");
+  var step4result = step4(step3result)
+  setStatus("completed")
+  saveFile("Logic completed for params "+param1+"::"+param2)
   return step4result;
 }
 </pre>
 
-<pre class="code prettyprint lang-c linenums">
-char* pure(char *param1, char *param2){
-  char *step1result = step1(param1, param2);
-  char *step2result = step2(step1result);
-  char *step3result = step3(step2result);
+<p>The pure logic looks like this</p>
+
+<pre class="code prettyprint lang-javascript linenums">
+function logic(param1, param2){
+  var step1result = step1(param1, param2)
+  var step2result = step2(step1result)
+  var step3result = step3(step2result)
   if (eStop()){
-    return "stoppedresult";
+    return "stoppedresult"
   }
-  char *step4result = step4(step3result);
+  var step4result = step4(step3result)
   return step4result;
 }
 </pre>
 
-<pre class="code prettyprint lang-go linenums" style="width: 85em">
-package main
+<p>Everything else is fluff that I don't want/need to test.  Most testing frameworks will let you stub out all of the other methods.  However, I had a larger goal of refactoring the project, so I instead opted to pass the behavior into the function:</p>
 
-import "fmt"
-
-type Log func(level string, msg string)
-type SetStatus func(status string)
-type Notify func(obj string)
-type EStop func() bool
-type SaveFile func(msg string)
-
-func main() {
-	fmt.Println("Calling logic as a pure function")
-	var result = logic("param1", "param2", nil, nil, nil, nil, nil)
-	fmt.Println("Result is " + result)
-
-	fmt.Println("Calling logic as a regular function")
-	result = logic("param1", "param2",
-		func(level string, msg string) { fmt.Println("LOG[" + level + "][" + msg + "]") },
-		func(status string) { fmt.Println("Current status set to: " + status) },
-		func(obj string) { fmt.Println("Called notify message on object: " + obj) },
-		func() bool { var dbLookupResult = false; return dbLookupResult },
-		func(info string) { fmt.Println("Info written to file [[" + info + "]]") })
-	fmt.Println("Result is " + result)
-}
-
-func logic(param1 string, param2 string, log Log, setStatus SetStatus, notify Notify, eStop EStop, saveFile SaveFile) string {
-	if setStatus != nil {
-		setStatus("running")
-	}
-	var s1 = param1 + "::" + param2
-	if log != nil {
-		log("INFO", "About to do Step 2, this could take awhile")
-	}
-	var s2 = s1 + "::step2"
-	if log != nil {
-		log("INFO", "Completed step 2")
-	}
-	var s3 = s2 + "::step3"
-	if notify != nil {
-		notify("randomobjectnotify")
-	}
-	if eStop != nil && eStop() {
-		if setStatus != nil {
-			setStatus("stopped")
-		}
-		return "stoppedresult"
-	}
-	var s4 = s3 + "::step4"
-	if setStatus != nil {
-		setStatus("completed")
-	}
-	if saveFile != nil {
-		saveFile("Logic completed for params " + param1 + "::" + param2)
-	}
-	return s4
+<pre class="code prettyprint lang-javascript linenums">
+function logic(param1, param2, actions){
+  actions.setStatus("running")
+  var step1result = step1(param1, param2)
+  actions.log("INFO", "About to do Step 2, this could take awhile")
+  var step2result = step2(step1result)
+  actions.log("INFO", "Completed step 2")
+  var step3result = step3(step2result)
+  actions.notify("randomobjectnotify")
+  if (actions.eStop()){
+    actions.setStatus("stopped")
+    return "stoppedresult"
+  }
+  var step4result = step4(step3result)
+  actions.setStatus("completed")
+  actions.saveFile("Logic completed for params "+param1+"::"+param2)
+  return step4result;
 }
 </pre>
+
+<p>This way, I can change the behavior between running tests and production, which slowly refactoring the actionsone by one.</p>
+<p>I have a <a href="https://github.com/daveroberts/sideeffects">github repository</a> which showcases these changes in various languages, including C, Go, Java, JavaScript, Ruby and Scala</p>
