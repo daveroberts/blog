@@ -16,6 +16,7 @@ h1,h2,h3{ font-family: sans-serif; color: #333; }
 .tags a:hover{ text-decoration: underline; }
 .date{ color: #333; font-style: italic; margin: 0.3em 0; }
 .post-content{ margin-top: 1.5em; }
+.post-content * img { max-width: 100%; }
 .read_next{ margin-top: 2em; font-style: italic; }
 a{ text-decoration: none; font-family: sans; }
 a:hover{ text-decoration: underline; }
