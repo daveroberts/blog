@@ -1,0 +1,64 @@
+I've been writing, and rewriting this email for a while.  I had a thoughtful post on CPU efficiency and how you can speed up your programs, but it was pretty boring to read.  It's more fun to rant, so I'm just going to rant.
+
+
+I've been thinking about some computer science problems, and wanted to share my thoughts.
+
+Problem: Your program is slow, you want to make it fast.
+
+First, measure your program to determine why it's slow.  Usually your program is constrained by either I/O operations or CPU operations.  Let's assume you have a program that is CPU constrained.
+
+Around 2004, CPUs hit a limit for how fast a single core could run, and instead, new chips added more cores running at the same frequency.  This means that before 2004, most programs would get faster by upgrading your CPU.  I'll come back to this point in a bit, but in general, your program won't get faster if you upgrade your CPU anymore.
+
+A second way to make your program faster is to rewrite it to do less.  Is every instruction really necessary?  Do you need to loop through every element if a list is already sorted?  Do you need to perform database updates on every flipping row in the table or can you reduce it to a single update statement? Can you just perform one database query instead of 50 and cache the results locally?  Just because Keener's code works doesn't mean that it couldn't be improved a bunch and made much faster.
+
+Another way to speed up a program is to use a faster language.  Ruby and Python are very slow.  If you find yourself in a situation where your program is CPU bound, they may not be the right tool for the job.  Both Ruby and Python let you call code libraries which are written in faster languages.  Find out where your program is slow and call a faster library to do the heavy lifting.
+
+
+
+Ruby before 1.9 didn't use native operating system threads, and Ruby and Pyt
+
+first, look at CPU usage, increase number of threads
+Ruby GIL
+Java multiple threads
+C10K limit
+Go
+
+Let's say you have a web application.  People browse to your site, or an API hits your backend, with a request.  Your system takes the request, processes it, and gives a response back to the user or bot.  This would look something like the following in Rails:
+
+def upload_document
+  @document = Document.create(params[:document])
+  Log.log("#{@document.name} received")
+  @document.parse
+  if !@document.valid?
+    render text: "Your document isn't valid"
+  end
+  FTP.archive(@document)
+  Partners.all.each do |partner|
+    partner.send(@document)
+  end
+  render text: "Received document, sent to partners"
+end
+
+However, let's say that this "upload_document" function takes a while to run, and you have people uploading lots of documents to you at the same time, and your system is overwhelmed, and the people who upload documents are complaining that it takes a long time.
+
+There are various solutions:
+
+1. Use DelayedJob.  This puts the document into the database in a raw / unverified format, where another process will read and process it later.  The main disadvantage of this approach is that you're likely using your main database as a queue, so you might still run into a bottleneck.
+2. Use a standalone queue.  There are lots of them.  Some are durable and slow, some are transient and fast.  There's a good list of them here: http://queues.io/  NATS is a favourite of mine.
+3. Store the document in memory, tell the user that you've received the document, but haven't yet processed it, and process it later.
+
+I've been dipping my toes into Go.  It provides an elegant way to "store" those requests in memory.  I found an article which does a nice tutorial for how this problem can be tackled:
+
+http://nesv.github.io/golang/2014/02/25/worker-queues-in-go.html
+
+So let's say you now receive the document, spawn a goroutine to handle the document, and instantly tell the user, "I got your document, I'll send it later".  So you can accept more uploads at a time now, but you run into another problem: the partner.send is failing because you're overwhelming your partners with your new found speed.  No problem, there are various ways to handle that as well.
+
+1) Place a semaphore around the code that does the partner.send and only allow X goroutines to access it at any given time.
+
+2) Create a channel / worker pool specifically for the partner.send, and only send when a worker is available.
+
+Golang lends itself well to scalable systems with goroutines.  Another way to handle scale is with event-driven programming.  Your code is invoked based on some event, like receiving a message on the network.  There are lots of other ways to introduce event-driven programming into your environment!  The most popular is probably NodeJS.  If you're stuck in Java world, there's Netty / Akka.  Python has Celery, and even the "slow" Ruby can be given new life with EventMachine!  There are plenty of others, and many of these event-driven frameworks all use the same underlying C library.
+
+Event-driven programming is not the next big thing, it's already here and ready to solve processing bottleneck problems.
+
+So my challenge to you all is to try and program something with Go or anything event-driven.  Learn how it's different than synchronous programming.  It's easy to process lots of things using a 'for' loop, but if you are handling things one at a time, your application may not perform well.  One way to dive in is to use the link I provided above and copy/paste the code and get your feet wet, but feel free to branch out into anything else.
