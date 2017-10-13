@@ -1,19 +1,84 @@
 date = 2016-09-15
 draft = true
-tags = []
+tags = ["simplicity"]
 title = "Too much to remember"
+description = "A platform's success is either accelerated or hindered by how many of the basics a programmer can remember."
 ----
+<h2>Uh oh, the Internet's down</h2>
+<p>How far can you get in your favorite programming language without using Google?  Can you write "Hello World"?</p>
+<p><i>"Certainly."</i></p>
+<pre class="code prettyprint lang-ruby linenums">
+puts "Hello World"
+</pre>
+<p>What if Java is your favorite language?</p>
+<p><i>"A little harder, but I think I can manage."</i></p>
+<pre class="code prettyprint lang-java linenums">
+public class Main {
+  public static void main(String[] args){
+    System.out.println("Hello World")
+  }
+}
+</pre>
+<p><i>"Then run <span class="inline-code">javac Main.java</span> and then <span class="inline-code">java Main</span>."</i></p>
+<p>Okay, let's move beyond Hello World.  Can you read input from the user?</p>
+<pre class="code prettyprint lang-java linenums">
+BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+String input = br.readLine();
+</pre>
+<p><i>Be sure to import <span class="inline-code">java.io.*</span> at the start of your file</i></p>
+<p>Did you cheat and have to look that up? <a id="footnote-back-1" class="footnote" href="#footnote-1">[1]</a></p>
+<p>As a programmer, we cache a certain amount of our language / platform into memory, and for everything else we use Google.  Off the top of my head, here are some basic things I usually have cached:</p>
+<ul>
+  <li>Basic IO</li>
+  <li>Declaring variables, functions, constants, classes</li>
+  <li>Assigning values, basic math, equality checks, calling functions, calling methods</li>
+  <li>Loops, if statements, flow control</li>
+  <li>Some string functions, arrays or collections, some collection functions</li>
+</ul>
+<p>For everythig else, I hit up Google. <a id="footnote-back-2" class="footnote" href="#footnote-2">[2]</a></p>
+<h2>Why caching matters</h2>
+<p>You may think, <i>"Who cares?   I have Google.  I don't need to remember everything!"</i>  and you're right.  However, I assert that you will be happier with the language / platform where you're able to have the most "stuff" cached in your brain.</p>
+<p>This isn't just an issue that beginners experience.  Nobody has a big enough brain to hold a whole language.  If a language is so complex that you can't fit basic operations in your brain, your brain may tell you, "Why bother using this language?"  As a language, API or platform designer, you can take advantage of this fact by modeling your language, API or platform to be like an already popular one.  This way, even new users will have some subset of your features pre-cached</p>
+<h2>Rails success</h2>
+<p>I believe a key factor in Rails success was how easy it was for a developer to cache the API in their brain.  David Heinemeier Hansson put out a video where he built a blog in 15 minutes from memory.  Yehuda Katz made a video doing the same thing, but didn't use any pre-existing code.  I too am able to create a Rails website without once looking at the API.</p>
+<p>This isn't because I'm a great programmer.  This is a reflection of how great the Rails API is.  Everything from downloading Rails to setting up the database can be done easily from memory.</p>
+<h2>Boilerplate</h2>
+<p>Getting started with a new platform should be easy.  Here is one file from the first page of the official Angular tutorial:</p>
+<pre class="code prettyprint lang-typescript linenums">
+import { NgModule }      from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule }   from '@angular/forms'; // &lt;-- NgModel lives here
 
-Can create a Rails site from scratch from memory
-Yehuda "no cheating" video
+import { AppComponent }  from './app.component';
 
---------------------
-
-Can create Angular 1 site from memory
-  can't create a component from memory
-
-Angular 2 tutorial - no way I can remember all of this
-
-I can use a quick start, but I HAVE to use a quick start
-
-The payoff from the quickstart is the same as <h1>My First Angular 2 App</h1>, so you don't see value right away
+@NgModule({
+  imports: [
+    BrowserModule,
+    FormsModule // &lt;-- import the FormsModule before binding with [(ngModel)]
+  ],
+  declarations: [
+    AppComponent
+  ],
+  bootstrap: [ AppComponent ]
+})
+export class AppModule { }
+</pre>
+<p>I realize that this isn't a 'Hello World', and a bare bones Angular app can problem be smaller, but looking at this file, there's a lot for a beginner to take in.  Compare this with Angular 1:</p>
+<pre class="code prettyprint lang-html">
+&lt;input type="text" ng-model="name" /&gt;
+&lt;h1&gt;Hello {{ name }}&lt;/h1&gt;
+</pre>
+<p>You already understand everything in the example.  You don't need to look anything up.  I realize that there are edge cases, gotchas, and they had to rewrite the application for reasons, but looking at these two examples, it seems that for everything gained, the Angular team lost simplicity in the transition.</p>
+<h2>Clone my starter project</h2>
+<p>Lots of projects have a getting started guide where the first step is to clone a "starter pack" from GitHub.  While it's important to facilitate getting started, this can also hide a lot of complexity.<a id="footnote-back-3" class="footnote" href="#footnote-3">[3]</a></p>
+<p>Having a quick start is great, but if I <em>have</em> to use the quick start every time, then getting started is too hard to bother remembering.</p>
+<h2>Why this matters</h2>
+<p>If you're designing a Language, platform, or API.  I believe a key factor of its success is determined by how simple it is to use.  You might have a platform / language / API that is successful for other reasons, despite being hard to use, but you're going against the grain.</p>
+<div class="footnotes">
+  <h1>Footnotes</h1>
+  <div>
+    <div><a id="footnote-1" href="#footnote-back-1">[1]</a> It looks like Java has added some easier canonical ways to get input since I last used Java.</div>
+    <div><a id="footnote-2" href="#footnote-back-2">[2]</a> or DuckDuckGo</div>
+    <div><a id="footnote-3" href="#footnote-back-3">[3]</a> I realize that the <span class="code-inline">rails new</span> command is essentially just a glorified starter project.  I'm not making an exception for the complexity this hides in Rails.</div>
+  </div>
+</div>

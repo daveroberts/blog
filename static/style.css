@@ -3,6 +3,7 @@ body{ margin: 0; color: #222 }
 .wrapper{ display: grid; grid-template-columns: 25em auto; grid-gap: 0; min-height: 100vh; }
 .container{ grid-column: 2 / 3; grid-row: 1; max-width: 45em; line-height: 1.8em; font-size: 1em; font-family: serif; padding: 1em; }
 h1,h2,h3{ font-family: sans-serif; color: #333; }
+.inline-code { font-family: monospace; background-color: #ddd; font-style: normal; padding: 0.3em 0.2em; border-radius: 0.3em; color: #cc2b2b; }
 .code{ font-family: monospace; font-size: 1em; line-height: 1.1em; -moz-tab-size: 2; tab-size: 2; }
 .sidebar{ grid-column: 1 / 2; grid-row: 1; background-color: #2156ae; color: white; font-family: sans; font-size: 1em; margin: 0; padding: 1em; }
 .sidebar > h1,.sidebar > h2,.sidebar > h3{ color: white; }
@@ -20,6 +21,9 @@ h1,h2,h3{ font-family: sans-serif; color: #333; }
 .read_next{ margin-top: 2em; font-style: italic; }
 a{ text-decoration: none; font-family: sans; }
 a:hover{ text-decoration: underline; }
+.footnotes > h1 {font-size: 1.1em }
+.footnotes * a { color: #333; font-family: serif; }
+.footnote{ vertical-align: super; font-size: 0.55em; }
 
 @media (max-width: 900px) {
   .wrapper{ grid-template-columns: auto; }
