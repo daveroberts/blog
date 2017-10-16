@@ -1,0 +1,54 @@
+date = 2017-10-15
+draft = true
+tags = []
+title = "Code Examples Suck"
+description = "Why learning to code usually sucks"
+----
+<h2>Motivation</h2>
+<p>What motivates someone to learn a foreign language?</p>
+<ul>
+  <li>They want to travel to a foreign country and speak some of the local language.</li>
+  <li>You want to do business with people from a foreign country.</li>
+  <li>They have an uncle from Italy who knows ten words in English, but much prefers Italian, and they want to talk with him.</li>
+  <li>They want to flirt with that cute girl who doesn't speak English.</li>
+</ul>
+<p>and many other countless reasons</p>
+<p>People also have motivations to learn programming languages:</p>
+<ul>
+  <li>They want to build a script to automate some of their work</li>
+  <li>They want to build a website or app</li>
+  <li>They have an assignment due</li>
+</ul>
+<p>The point is that just like people learn foreign languages in order to help them accomplish some goal, people learn programming languages in order to help them accomplish some goal.  Of course there are exceptions where people learn just to learn.  Most people who learn Latin aren't doing it to speak Latin with their neighbors.  Similarly, if you interact with people who speak Spanish, learning Spanish would benefit you more than learning Greek.</p>
+<h2>Example Code Sucks</h2>
+<p>Most programming examples online suck.  Let's say that Bob is trying to learn how to code.  He might go online and read a tutorial which looks like this:</p>
+<em>"Abstract classes can have method signatures which are defined in their subclasses.  For example, the abstract class Animal can define the abstract method 'eat' which is defined in the Bear class and Fish class."</em></p>
+<pre class="code prettyprint lang-java">
+public abstract class Animal {
+  public abstract void eat();
+}
+
+public class Bear extends Animal() {
+  public void eat(){
+    System.out.println("I'm a bear and I eat bamboo");
+  }
+}
+
+public class Fish extends Animal() {
+  public void eat(){
+    System.out.println("I'm a fish and I eat algae");
+  }
+}
+</pre>
+<p>Bob has no idea how to code, and this example doesn't seem to help.  How can subclassing the animal class help him script his data entry task in Excel?</p>
+<p>It doesn't help.  He's more confused than when he started.</p>
+<p>There seems to be an unwritten rule that code samples can't solve problems.  They have to be so abstract that they could never be pulled from a real code base.  I'm not sure why this rule is followed so closely. <a id="footnote-1" href="#footnote-back-1">[1]</a></p>
+<p>Programming lectures, books, talks, videos, tutorials and courses.  Some people find these to be very helpful.  I don't.  I can pass an entire programming course on Coursera, Udacity or at University without retaining much of anything which I learned.</p>
+<p><strong>In order for me to learn, I need to have a real, practical problem that I'm solving.</strong></p>
+<p>I suspect that many programmers are the same way.  If I'm listening to a lecture about some new cool technology, I constantly ask myself <i>"how can I use this to solve a problem I have?"</i>.  If it can't solve one of my problems, I can't be bothered.  I'll zone out.  My brain won't bother to commit any of it to memory.</p>
+<div class="footnotes">
+  <h1>Footnotes</h1>
+  <div>
+    <div><a id="footnote-1" href="#footnote-back-1">[1]</a> My <a href="https://github.com/daveroberts/simple-language-parser">github repository "Simple Language Parser"</a> has some code examples which are pretty abstract.  The purpose was to demonstrate the language and not teach programming basics.  That said, I'm sure that I'm guilty of this somewhere.</div>
+  </div>
+</div>

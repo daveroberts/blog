@@ -4,15 +4,24 @@ tags = []
 title = "Writing a compiler"
 description = "How I tricked myself into writing a compiler"
 ----
-<h2>Motivation</h2>
 <p>Why should you learn to write a compiler?</p>
-<p>You probably don't need to.  Move along, nothing to learn here.</p>
-<p>Programming lectures, books, talks, videos, tutorials and courses.  Some people find these to be very helpful.  I don't.  I can pass an entire programming course on Coursera or Udacity without retaining much of anything which I learned.</p>
-<p><strong>In order for me to learn, I need to have a real, practical problem that I'm solving.</strong></p>
-<p>I suspect that many programmers are the same way.  If I'm listening to a lecture about some new cool technology, I constantly ask myself <i>"how can I use this to solve a problem I have?"</i>.  If it can't solve one of my problems, I can't be bothered.  I'll zone out.  My brain won't bother to commit any of it to memory.</p>
+<p>You probably don't need to.</p>
+<p>That's what I always thought.  <em>"What's the point?  No matter how much I work on a language, it will be worse than every other language.  What language do programmers hate now-a-days?  Visual Basic 6? <a id="footnote-back-1" class="footnote" href="#footnote-1">[1]</a>  My language will be worse than VB6."</em></p>
+<p>If I can't create a language better than Visual Basic, then why bother?  Couldn't I just use Visual Basic (or any other language), and skip the really hard step of writing a compiler?  My job is to actually get something done.  If you were a taxi driver, writing a compiler would be like building your taxi from scratch.  You <em>could</em> do it yourself, but why bother?</p>
+<p>Writing a real production capable compiler takes a lot of work.  Many languages are backed by companies with very deep pockets.  Others are supported by armies of volunteers in the open source community.  For this reason, I've always thought that writing a compiler yourself would be purely an academic pursuit.  A labor of love.</p>
 <h2>Academic Compiler</h2>
 <p>Because I never <i>needed</i> to learn about compilers, I never <i>wanted</i> to learn about compilers.  I took a compilers course in school.  I had a great professor too.  I needed to learn enough to do well in the class, we built a toy compiler, but I didn't really learn how to build a compiler.</p>
-<p>The compiler we built could do basic math and store variables.  We built the compiler using Java.  Java could already add numbers and store variables, among many other things our compilers couldn't do.  Why would we ever choose to write our own compiler?  I figured that this was just something that all Computer Science majors needed to learn in school.  Consider it a theory course, and move on.</p>
+<p>The compiler we built could do basic math and store variables.  We built the compiler using Java.  Java could already add numbers and store variables, among many other things our compilers couldn't do.  Why would we ever choose to write our own compiler?  I figured that this was just something that all Computer Science majors needed to learn in school.  Considered it a theory course, and moved on.</p>
 <h2>Windows Power Calculator</h2>
 <p>The calculator included with Windows XP was pretty basic.  Microsoft offered a better version called Power Calculator along with a suite of tools called Microsoft PowerToys for Windows XP.  Power Calculator didn't work on Windows Vista or Windows 7.  <i>(It sort of worked, but would refuse to run the installer, so you'd have to get the executable elsewhere.  The executable needed to be run in compatibility mode.  I think this broke with some Windows update)</i>.  With my favorite calculator gone, I needed something to fill the void.  I tried various third party calculators.  Most suffered from one or more of the following problems:  First, most took about two or three seconds to load.  That may not sound so bad, but I was used to an instant load time!  Second, they were way too complex.  I just wanted a simple interface, not 50 buttons.  Third, I wanted the ability to select parts of the equation with my mouse and delete, edit, change the equation.  You could do this with Power Calculator.</p>
-<p>At some moment, I was motivated enough and bored enough to just write my own calculator.  How hard could it be?  I opened up Visual Studio and got to work.  At some point I needed to parse the input.  If the user entered <span class="code">1+2*3</span>, I wanted to multiply two and three first, then add one, according to the order of operations.</p>
+<p>At some moment, I was motivated enough and bored enough to just write my own calculator.  How hard could it be?  I opened up Visual Studio and got to work.  At some point I needed to parse the input.  If the user entered <span class="code">1+2*3</span>, I wanted to multiply two and three first, then add one, according to the order of operations.  At some point I realized that this was similar to the compiler I wrote in Java back at university, and looked up how we tackled the problem.  With enough trial and error, I was able to create a basic parser that would read the string and turn it into a math expression.</p>
+<p>I tricked myself into writing a compiler.  I didn't set out to do this, but it just happened.</p>
+<h2>A real example</h2>
+<p>So in this next section I wanted to write about a real problem from work.  <a href="code-examples-suck.html">Because real problems bring real motivation.</a>  But it's work, and I need to leave out all of the details which make it an interesting problem.  Usually tutorials online use abstract concepts: </p>
+<p>And the poor reader, who may just be a beginning programmer, has to learn both what the hell you're talking about, as well as how to apply the concept to a real domain.</p>
+<div class="footnotes">
+  <h1>Footnotes</h1>
+  <div>
+    <div><a id="footnote-1" href="#footnote-back-1">[1]</a> I actually think that Visual Basic 6 had a lot going for it: Garbage collection, created distributable files, good IDE with good debugger, WSYIWYG GUI builder, native look and feel.  Might be worthy of a post someday.</div>
+  </div>
+</div>
