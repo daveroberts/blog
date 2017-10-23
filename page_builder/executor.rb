@@ -33,6 +33,7 @@ module PageBuilder
       Dir['posts/*'].each do |filename|
         begin
         post = process(filename, File.read(filename))
+        next if post[:draft]
         posts.push post
         rescue => e
           puts "Error found when processing #{filename}"
